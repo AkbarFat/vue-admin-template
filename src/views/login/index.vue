@@ -6,15 +6,15 @@
         <h3 class="title">Login Form</h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="phoneNumber">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
+          ref="phoneNumber"
+          v-model="loginForm.phoneNumber"
+          placeholder="phone number"
+          name="phoneNumber"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -44,7 +44,7 @@
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
+        <span style="margin-right:20px;">phoneNumber: admin</span>
         <span> password: any</span>
       </div>
 
@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+import { validPhoneNumber } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+    const validatePhoneNumber = (rule, value, callback) => {
+      if (!validPhoneNumber(value)) {
+        callback(new Error('Please enter the correct phone number'))
       } else {
         callback()
       }
@@ -74,11 +74,11 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
+        phoneNumber: '999999999',
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        phoneNumber: [{ required: true, trigger: 'blur', validator: validatePhoneNumber }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
